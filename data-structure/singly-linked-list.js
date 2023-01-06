@@ -128,7 +128,38 @@ class SinglyLinkedList {
         this.length--;
         return removed;
     }
-}
+
+    reverse() {
+        var currentNode = this.head;
+
+        this.head = this.tail;
+        this.tail = currentNode;
+
+        var next;
+        var prev = null;
+    
+        for (var i = 0; i < this.length; i++) {
+            next = currentNode.next;
+            currentNode.next = prev;
+            prev = currentNode
+            currentNode = next;
+        }
+
+        return this;
+    }
+
+    print() {
+        var arr = [];
+        var current = this.head;
+
+        while (current) {
+            arr.push(current.val);
+            current = current.next;
+        }
+
+        console.log(arr)
+    }
+ }
 
 const list = new SinglyLinkedList()
 list.push("Hello")
@@ -143,8 +174,13 @@ list.push("!")
 // list.pop()
 // list.pop()
 
+list.reverse();
+console.log(list);
+console.log("\n\n")
+list.print();
 
 // console.log(list.get(2));
-console.log(list.set(3, "Prosper"));
+// console.log(list.set(3, "Prosper"));
+
 
 // console.log(list.list());
